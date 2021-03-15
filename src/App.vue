@@ -1,18 +1,14 @@
 <template>
   <div class="container column">
-    <app-input @add-new-block="addNewBlock"></app-input>
-    <app-view></app-view>
+    <app-input @add-new-block="addNewBlock"/>
+    <app-view :blocks="blocks"/>
   </div>
   <div class="container">
-    <app-comments>
-    </app-comments>
-    <app-loader>
-    </app-loader>
+    <app-comments/>
   </div>
 </template>
 
 <script>
-import AppLoader from './components/AppLoader'
 import AppInput from './components/AppInput'
 import AppView from './components/AppView'
 import AppComments from './components/AppComments'
@@ -20,9 +16,7 @@ import AppComments from './components/AppComments'
 export default {
   data () {
     return {
-      blocks: [],
-      comments: [],
-      loading: false
+      blocks: []
     }
   },
   methods: {
@@ -32,20 +26,11 @@ export default {
       console.log('blocks=', this.blocks)
     }
   },
-  components: { AppLoader, AppInput, AppView, AppComments }
+  components: { AppInput, AppView, AppComments }
 
 }
 </script>
 
 <style>
-.avatar {
-  display: flex;
-  justify-content: center;
-}
 
-.avatar img {
-  width: 150px;
-  height: auto;
-  border-radius: 50%;
-}
 </style>

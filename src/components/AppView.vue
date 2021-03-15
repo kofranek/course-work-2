@@ -1,29 +1,50 @@
 <template>
   <div class="card card-w70">
-    <h1>Резюме Nickname</h1>
-    <div class="avatar">
-      <img src="https://cdn.dribbble.com/users/5592443/screenshots/14279501/drbl_pop_r_m_rick_4x.png">
+    <h3 v-if="emptyBlocks">Add the first block to see the result</h3>
+    <div v-for="block in blocks" :key="block.id">
+      <div v-if="block.type==='title'" id="title">
+        <h1>{{ block.content }}</h1>
+      </div>
+      <div v-else-if="block.type==='subtitle'">
+        <h2>{{ block.content }}</h2>
+      </div>
+      <div v-else-if="block.type==='text'">
+        <p>{{ block.content }}</p>
+      </div>
+      <div v-else-if="block.type==='avatar'">
+        <div class="avatar">
+          <img :src="block.content">
+        </div>
+      </div>
     </div>
-    <h2>Опыт работы</h2>
-    <p>
-      главный герой американского мультсериала «Рик и Морти», гениальный учёный, изобретатель, атеист (хотя в некоторых
-      сериях он даже молится Богу, однако, каждый раз после чудесного спасения ссылается на удачу и вновь отвергает его
-      существование), алкоголик, социопат, дедушка Морти. На момент начала третьего сезона ему 70 лет[1]. Рик боится
-      пиратов, а его главной слабостью является некий - "Санчезиум". Исходя из того, что существует неограниченное
-      количество вселенных, существует неограниченное количество Риков, герой сериала предположительно принадлежит к
-      измерению С-137. В серии комикcов Рик относится к измерению C-132, а в игре «Pocket Mortys» — к измерению
-      C-123[2]. Прототипом Рика Санчеза является Эмметт Браун, герой кинотрилогии «Назад в будущее»[3].
-    </p>
-    <h3>Add the first block to see the result</h3>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'AppView'
+  name: 'AppView',
+  props: {
+    blocks: Array
+  },
+  computed: {
+    emptyBlocks () {
+      return this.blocks.length === 0
+    }
+  }
+
 }
 </script>
 
 <style scoped>
+.avatar {
+  display: flex;
+  justify-content: center;
+}
 
+.avatar img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+}
 </style>
