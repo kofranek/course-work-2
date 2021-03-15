@@ -1,9 +1,9 @@
 <template>
-  <p>
-    <button v-if="showUploadButton" class="btn primary" @click="uploadComments">Upload comments</button>
+  <p v-if="showUploadButton">
+    <button class="btn primary" @click="uploadComments">Upload comments</button>
   </p>
-  <app-loader v-if="loading"/>
-  <div v-if="showComments" class="card">
+  <app-loader v-else-if="loading"/>
+  <div v-else class="card">
     <h2>Comments</h2>
     <ul class="list" v-for="comment in comments" :key="comment.id">
       <li class="list-item">
@@ -41,14 +41,12 @@ export default {
         }
       })
       this.comments = await response.json()
-      this.loading = false
-      this.showComments = false
+      setTimeout(() => {
+        this.loading = false
+      }, 2000)
     }
   },
   computed: {
-    showComments () {
-      return this.comments.length > 0
-    },
     showUploadButton () {
       return this.comments.length === 0
     }
