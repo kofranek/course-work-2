@@ -43,10 +43,6 @@ export default {
       this.comments = await response.json()
       this.loading = false
       this.showComments = false
-      console.log(this.comments[1])
-      console.log('name=', this.comments[1].name)
-      console.log('email=', this.comments[1].email)
-      console.log('body=', this.comments[1].body)
     }
   },
   computed: {
