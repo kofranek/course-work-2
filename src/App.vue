@@ -21,9 +21,7 @@ export default {
   },
   methods: {
     addNewBlock (block) {
-      console.log('AddNewBlock')
       this.blocks.push(block)
-      console.log('blocks=', this.blocks)
     }
   },
   components: { AppInput, AppView, AppComments }
