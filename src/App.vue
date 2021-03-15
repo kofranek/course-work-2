@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container column">
+    <app-input @add-new-block="addNewBlock"></app-input>
+    <app-view></app-view>
+  </div>
+  <div class="container">
+    <app-comments>
+    </app-comments>
+    <app-loader>
+    </app-loader>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppLoader from './components/AppLoader'
+import AppInput from './components/AppInput'
+import AppView from './components/AppView'
+import AppComments from './components/AppComments'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  data () {
+    return {
+      blocks: [],
+      comments: [],
+      loading: false
+    }
+  },
+  methods: {
+    addNewBlock (block) {
+      console.log('AddNewBlock')
+      this.blocks.push(block)
+      console.log('blocks=', this.blocks)
+    }
+  },
+  components: { AppLoader, AppInput, AppView, AppComments }
+
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style>
+.avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
 }
 </style>
